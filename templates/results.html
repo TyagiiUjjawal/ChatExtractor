@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WhatsApp Chat Analyzer - Results</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      h2 {
+        color: #555;
+        margin-bottom: 10px;
+      }
+
+      h3 {
+        color: #888;
+      }
+
+      .statistics-container {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .statistics-container h3 {
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-gap: 20px;
+        justify-items: center;
+      }
+
+      .grid-item {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        background-color: #f9f9f9;
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+      }
+
+      .fade-in {
+        animation-name: fadeIn;
+      }
+
+      .word-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .word-container h2 {
+        margin-bottom: 10px;
+      }
+
+      .word-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .word-list li {
+        display: inline-block;
+        margin: 5px;
+        padding: 5px 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="animated fade-in">WhatsApp Chat Analyzer - Results</h1>
+
+    <h2 class="animated fade-in">Top Statistics</h2>
+    <div class="statistics-container animated fade-in">
+      <div>
+        <h3>Total Messages</h3>
+        <p>{{ num_messages }}</p>
+      </div>
+      <div>
+        <h3>Total Words</h3>
+        <p>{{ words }}</p>
+      </div>
+      <div>
+        <h3>Media Shared</h3>
+        <p>{{ num_media_messages }}</p>
+      </div>
+      <div>
+        <h3>Links Shared</h3>
+        <p>{{ num_links }}</p>
+      </div>
+      <div>
+        <h3>Users</h3>
+        <p>{{ x }}</p>
+      </div>
+    </div>
+    <h2>Most Common Words</h2>
+
+    <ul
+      class="word-list"
+      style="
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      "
+    >
+      {{ most }}
+    </ul>
+
+    <h2 class="animated fade-in">Monthly Timeline</h2>
+    <div class="grid-container animated fade-in">
+      <div class="grid-item">
+        <img src="/static/timeline.png" alt="Monthly Timeline" />
+      </div>
+    </div>
+
+    <h2 class="animated fade-in">Daily Timeline</h2>
+    <div class="grid-container animated fade-in">
+      <div class="grid-item">
+        <img src="/static/daily_timeline.png" alt="Daily Timeline" />
+      </div>
+    </div>
+
+    <h2 class="animated fade-in">Activity Map</h2>
+    <div class="grid-container animated fade-in">
+      <div class="grid-item">
+        <h3>Most Busy Day</h3>
+        <img src="/static/busy_day.png" alt="Most Busy Day" />
+      </div>
+    </div>
+
+    <h2 class="animated fade-in">Weekly Activity Map</h2>
+    <div class="grid-container animated fade-in">
+      <div class="grid-item">
+        <img src="/static/activity_heatmap.png" alt="Weekly Activity Map" />
+      </div>
+    </div>
+
+    {% if selected_user == 'Overall' %}
+    <h2 class="animated fade-in">Most Busy Users</h2>
+    <div class="grid-container animated fade-in">
+      <div class="grid-item">
+        <img src="/static/most_busy_users.png" alt="Most Busy Users" />
+      </div>
+      <div class="grid-item">
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Messages</th>
+              <th>Words</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ new_df.to_html(index=False) }}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="word-container animated fade-in"></div>
+  </body>
+</html>

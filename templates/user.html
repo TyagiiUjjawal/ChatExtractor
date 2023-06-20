@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dropdown Menu - Attractive UI</title>
+    <style>
+      body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+
+      h3 {
+        color: #666;
+        text-align: center;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="text"],
+      input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        background-color: #4caf50;
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Choose from this</h1>
+    <h3>{{user_list}}</h3>
+
+    <form action="/analyze" method="POST" enctype="multipart/form-data">
+      <input type="text" name="selectedUser" required />
+      <input type="file" name="file" accept=".txt" required />
+
+      <br /><br />
+      <input type="submit" value="Analyze" />
+    </form>
+  </body>
+</html>

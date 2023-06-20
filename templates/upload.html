@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WhatsApp Chat Analyzer - Upload</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      h1,
+      h3 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        margin-left: -30px;
+      }
+
+      form {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        animation: slide-up 0.5s ease-in-out;
+      }
+
+      @keyframes slide-up {
+        0% {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      input[type="file"],
+      input[type="text"],
+      input[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+      }
+
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      WhatsApp Chat Analyzer <br />
+      Upload a file by exporting your chats from whatsApp
+    </h1>
+
+    <form action="/preprocess" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".txt" required />
+      <br /><br />
+      <input type="submit" value="Analyze" />
+    </form>
+  </body>
+</html>
